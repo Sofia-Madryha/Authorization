@@ -11,6 +11,7 @@ export default tseslint.config(
   {
     files: ["**/*.{ts,tsx}"]
   },
+
   {
     languageOptions: {
       globals: {
@@ -38,8 +39,8 @@ export default tseslint.config(
   },
   {
     rules: {
-      // "react/react-in-jsx-scope": "off",
-      // "react/jsx-uses-react": "off",
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-uses-react": "off",
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/no-confusing-void-expression": "off",
       "@typescript-eslint/no-explicit-any": "warn",
@@ -86,7 +87,5 @@ export default tseslint.config(
   },
 
   pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
-  ...pluginQuery.configs["flat/recommended"]
+  ...tseslint.configs.recommended
 );

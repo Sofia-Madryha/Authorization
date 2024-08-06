@@ -23,3 +23,5 @@ README.md
 .husky
 vite-env.d.ts
 vite.config.ts
+.lintstagedrc.json
+tsconfig.node.json
