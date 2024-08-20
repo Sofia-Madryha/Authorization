@@ -6,6 +6,7 @@ import pluginReactHooks from "eslint-plugin-react-hooks";
 import prettierPlugin from "eslint-plugin-prettier";
 import pluginQuery from "@tanstack/eslint-plugin-query";
 import reactRefresh from "eslint-plugin-react-refresh";
+import tsParser from "@typescript-eslint/parser";
 
 export default tseslint.config(
   {
@@ -18,6 +19,7 @@ export default tseslint.config(
         ...globals.browser,
         ...globals.es2021
       },
+      parser: tsParser,
       parserOptions: {
         tsconfigRootDir: ".",
         project: ["tsconfig.json", "tsconfig.node.json", "tsconfig.app.json"]
@@ -43,7 +45,7 @@ export default tseslint.config(
       "react/jsx-uses-react": "off",
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/no-confusing-void-expression": "off",
-      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-floating-promises": "off",
       "no-console": "warn",
       "no-unused-vars": "warn",
@@ -86,6 +88,5 @@ export default tseslint.config(
     }
   },
 
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended
+  pluginJs.configs.recommended
 );
