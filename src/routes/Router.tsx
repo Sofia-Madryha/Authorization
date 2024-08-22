@@ -3,12 +3,21 @@ import { createBrowserRouter } from "react-router-dom";
 import { LogInPage } from "../modules/auth";
 import { HomePage } from "../pages/HomePage";
 import ProtectedRoute from "./ProtectedRoute";
+import { MainLayout, AuthLayout } from "../layouts";
 
 const router = createBrowserRouter([
-  { path: "/", element: <LogInPage /> },
+  {
+    element: <AuthLayout />,
+    children: [{ path: "/", element: <LogInPage /> }]
+  },
   {
     element: <ProtectedRoute />,
-    children: [{ path: "/home", element: <HomePage /> }]
+    children: [
+      {
+        element: <MainLayout />,
+        children: [{ path: "/home", element: <HomePage /> }]
+      }
+    ]
   },
   {
     path: "*",

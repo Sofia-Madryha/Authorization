@@ -1,17 +1,23 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes";
-
-const queryClient = new QueryClient();
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ChakraProvider, useQueryClientProvider } from "./providers";
+import { CSSReset } from "@chakra-ui/react";
 
 function App() {
+  const queryClient = useQueryClientProvider();
+
   return (
-    <div>
-      <QueryClientProvider client={queryClient}>
-        {" "}
+    <QueryClientProvider client={queryClient}>
+      {" "}
+      <ChakraProvider>
         <RouterProvider router={router} />
-      </QueryClientProvider>
-    </div>
+        <CSSReset />
+      </ChakraProvider>
+      <ToastContainer />
+    </QueryClientProvider>
   );
 }
 
