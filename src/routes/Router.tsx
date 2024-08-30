@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { LogInPage } from "../modules/auth";
-import { HomePage } from "../pages/HomePage";
 import ProtectedRoute from "./ProtectedRoute";
-import { MainLayout, AuthLayout } from "../layouts";
+
+import { LogInPage } from "@/modules/auth";
+import { AuthLayout, MainLayout } from "@/layouts";
+import { HomePage } from "@/modules/blog";
 
 const router = createBrowserRouter([
   {

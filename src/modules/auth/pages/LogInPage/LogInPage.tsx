@@ -1,4 +1,4 @@
-import { LogInForm } from "../../components";
+import { LogInForm } from "@/modules/auth";
 
 const LogInPage = () => {
   return (

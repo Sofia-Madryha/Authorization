@@ -4,6 +4,7 @@ import { router } from "./routes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ChakraProvider, useQueryClientProvider } from "./providers";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { CSSReset } from "@chakra-ui/react";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <CSSReset />
       </ChakraProvider>
       <ToastContainer />
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
