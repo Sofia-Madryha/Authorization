@@ -1,16 +1,30 @@
-import { Box, Container, VStack } from "@chakra-ui/react";
+import { Box, Container, HStack, VStack } from "@chakra-ui/react";
 import { Cookies } from "react-cookie";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Button } from "@/ui";
+import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 
 const MainLayout = () => {
   const cookies = new Cookies();
+
   const navigate = useNavigate();
 
   const logOut = () => {
     cookies.remove("token");
     navigate("/", { replace: true });
   };
+
+  const [decodedToken, setDecodedToken] = useState<any>(null);
+
+  const accessToken = cookies.get("token");
+
+  useEffect(() => {
+    if (accessToken) {
+      const decoded = jwtDecode(accessToken);
+      setDecodedToken(decoded);
+    }
+  }, [accessToken]);
 
   return (
     <VStack
@@ -19,7 +33,7 @@ const MainLayout = () => {
       align={"start"}
       alignItems={"center"}
     >
-      <Box
+      <HStack
         maxW={{
           base: "360px",
           sm: "420px",
@@ -35,11 +49,18 @@ const MainLayout = () => {
           xl: "10px 140px"
         }}
         w={"100%"}
+        spacing={"10px"}
       >
         <Button variant="outlined" onClick={logOut}>
           log out
         </Button>
-      </Box>
+
+        {decodedToken?.role === "SUPERADMIN" && (
+          <Link to={"/admin"}>Admin </Link>
+        )}
+
+        {decodedToken?.role === "SUPERADMIN" && <Link to={"/home"}>Home </Link>}
+      </HStack>
       <Box as="main" display={"flex"}>
         <Container
           maxW={{

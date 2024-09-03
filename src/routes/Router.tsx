@@ -12,11 +12,21 @@ const router = createBrowserRouter([
     children: [{ path: "/", element: <LogInPage /> }]
   },
   {
-    element: <ProtectedRoute />,
+    element: <ProtectedRoute allowedRoles={["SUPERADMIN", "ADMIN"]} />,
     children: [
       {
         element: <MainLayout />,
         children: [{ path: "/home", element: <HomePage /> }]
+      }
+    ]
+  },
+
+  {
+    element: <ProtectedRoute allowedRoles={["SUPERADMIN"]} />,
+    children: [
+      {
+        element: <MainLayout />,
+        children: [{ path: "/admin", element: <div> ADMIN PAGE</div> }]
       }
     ]
   },
